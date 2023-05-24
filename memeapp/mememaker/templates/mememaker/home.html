@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>mememaker</title>
+</head>
+<body>
+    <h1>mememaker</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Generate Meme</button>
+    </form>
+</body>
+</html>
+{% endblock %}
