@@ -1,0 +1,30 @@
+.logo {
+    width: 250px; /* Adjust the width as needed */
+    margin-right: 10px;
+    background-color: aqua;
+}
+.logo-button {
+    text-decoration: none;
+}
+
+.logo-button:hover {
+    opacity: 0.7; /* Adjust the opacity for hover effect */
+}
+.navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: aqua;
+}
+.navigation a {
+    margin-left: 10px; /* Adjust the spacing between buttons as needed */
+    color: aqua; /* Set the font color to white */
+    text-decoration: none;
+    padding: 5px 10px; /* Adjust the padding as needed */
+    /*background-color: aqua; /* Set the background color to desired color */
+    border-radius: 5px; /* Adjust the border radius as needed */
+}
+
+.navigation a:hover {
+    background-color: rgba(124, 85, 177, 0.925); /* Set the background color for hover state */
+}

@@ -95,12 +95,9 @@ def generate_meme_text(word_input):
     return meme_text
 
 def generate_meme(word_input):
-    # Fetch a random template from memegen.link
     templates_response = requests.get('https://api.memegen.link/templates/')
     templates = templates_response.json()
     random_template = random.choice(templates)
-
-    # Generate meme URL with the random template and word_input
     template_name = random_template['id']
     meme_url = f"https://api.memegen.link/{template_name}/{word_input}.png"
     return meme_url
@@ -110,27 +107,18 @@ def make_meme(request):
         word_input = request.POST.get('word_input')
         meme_text = generate_meme_text(word_input)
         meme_url = generate_meme(meme_text)
-        
-        # Save the meme
         save_meme(meme_url)
         user_memes = Meme(user=request.user, url=meme_url)
         user_memes.save()
-        
-        # Get the list of saved memes
         saved_memes = get_saved_memes()
-        
         return render(request, 'mememaker/community.html', {'saved_memes': saved_memes})
-    
     return render(request, 'mememaker/mkmeme.html')
 
 def community_page(request):
-    # Get the list of saved memes
     saved_memes = get_saved_memes()
-    
     return render(request, 'mememaker/community.html', {'saved_memes': saved_memes})
 
 def create_meme_table():
-    # Connect to the PostgreSQL database
     conn = psycopg2.connect(
         host=os.getenv("HOST"),
         port=os.getenv("PORT"),
@@ -139,22 +127,17 @@ def create_meme_table():
         password=os.getenv("PASSWORD")
     )
     cursor = conn.cursor()
-
-    # Create a table to store memes if it doesn't exist
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS memes (
             id SERIAL PRIMARY KEY,
             url TEXT
         );
     ''')
-
-    # Commit the changes and close the connection
     conn.commit()
     cursor.close()
     conn.close()
     
 def save_meme(meme_url):
-    # Connect to the PostgreSQL database
     conn = psycopg2.connect(
         host=os.getenv("HOST"),
         port=os.getenv("PORT"),
@@ -163,19 +146,13 @@ def save_meme(meme_url):
         password=os.getenv("PASSWORD")
     )
     cursor = conn.cursor()
-
-    # Insert the meme URL into the database
     cursor.execute("INSERT INTO memes (url) VALUES (%s)", (meme_url,))
-
-    # Commit the changes and close the connection
     conn.commit()
     cursor.close()
     conn.close()
 
 def generate_unique_filename():
-    # Generate a unique filename using UUID
     unique_filename = str(uuid.uuid4()) + '.jpg'
-    
     return unique_filename
 
 def get_saved_memes():
@@ -212,7 +189,7 @@ def forgot_pass(request):
                 email_template_name='resetemail.html',  # Replace with your email template
                 subject_template_name='password_reset_subject.txt'  # Replace with your subject template
             )
-            return redirect('passdone')  # Replace with your success URL
+            return redirect('passdone')
     else:
         form = PasswordResetForm()
     
