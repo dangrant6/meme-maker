@@ -1,0 +1,12 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "OpenAI Fine-tunes Create",
+            "type": "shell",
+            "command": "openai",
+            "args": ["api", "fine_tunes.create", "-t", "memedata_prepared.jsonl", "-m", "davinci"],
+            "problemMatcher": []
+        }
+    ]
+}

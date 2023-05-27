@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% include 'header.html' %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'mememaker/home.css' %}">
+    <link rel="stylesheet" href="{% static 'header.css' %}">
+{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Community Meme Page</title>
+</head>
+<body>
+    <h1>Community Meme Page</h1>
+    
+    {% if saved_memes %}
+    <div>
+        {% for meme in saved_memes %}
+            <img src="{{ meme.0 }}" alt="Meme">
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>No memes available.</p>
+    {% endif %}
+</body>
+</html>
+{% include 'footer.html' %}
+{% endblock %}

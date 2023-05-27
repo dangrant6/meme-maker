@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% include 'header.html' %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'mememaker/home.css' %}">
+    <link rel="stylesheet" href="{% static 'header.css' %}">
+{% endblock %}
+    <h1>My Account</h1>
+    <p>Username: {{ request.user.username }}</p>
+    <p>Email: {{ request.user.email }}</p>
+
+    <form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+    </form>
+    <h2>My Memes</h2>
+    {% if memes %}
+        <div>
+            {% for meme in memes %}
+                <img src="{{ meme.url }}" alt="Meme">
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No memes created yet.</p>
+    {% endif %}
+    {% include 'footer.html' %}
+{% endblock %}

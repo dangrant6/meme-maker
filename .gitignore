@@ -1,2 +1,6 @@
 /memeenv
 .env
+tester.py
+tune.py
+data.py
+settings.py

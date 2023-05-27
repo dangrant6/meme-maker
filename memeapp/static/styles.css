@@ -2,40 +2,24 @@
 
 html
 {
-    font-family: 'Raleway', sans-serif;;
+    font-family: 'Raleway', sans-serif;
+    overflow: auto;
+    scroll-behavior: smooth;
 }
 body
 {
     margin: 0;
-    background-color: rgb(4, 35, 69);
-    color: rgba(124, 85, 177, 0.925);
+    background-color: #161b22;
+    color: white;
 }
-.logo {
-    width: 250px; /* Adjust the width as needed */
-    margin-right: 10px;
-}
-.logo-button {
-    text-decoration: none;
-}
-
-.logo-button:hover {
-    opacity: 0.7; /* Adjust the opacity for hover effect */
-}
-.navigation {
+body.site 
+{
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    color: aqua;
-}
-.navigation a {
-    margin-left: 10px; /* Adjust the spacing between buttons as needed */
-    color: aqua; /* Set the font color to white */
-    text-decoration: none;
-    padding: 5px 10px; /* Adjust the padding as needed */
-    /*background-color: aqua; /* Set the background color to desired color */
-    border-radius: 5px; /* Adjust the border radius as needed */
+    min-height: 100vh;
+    flex-direction: column;
 }
 
-.navigation a:hover {
-    background-color: rgba(124, 85, 177, 0.925); /* Set the background color for hover state */
+main.site-content 
+{
+    flex: 1;
 }

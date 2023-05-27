@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;
+    padding: 20px;
+    background-color: #161b22;
+}
+.h1 {
+    align-items: end;
+}
+.title-container {
+    text-align: left;
+    margin-left: 100px;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 48px;
+    margin: 0;
+}
+
+.description {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.started-button {
+    padding: 14px 40px;
+    font-size: 18px;
+    background-color: aqua;
+    color: rgba(124, 85, 177, 0.925);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.started-button:hover {
+    background-color: powderblue;
+}
+
+.dog {
+    height: 100px;
+    width: 150px;
+}
+
+.hit {
+    position: relative;
+    left: 50px;
+    width: 10px;
+    margin-left: 50px;
+}
+
+.mlg {
+    display: flex;
+    position: relative;
+    right: 50px;
+    width: 10px;
+    margin-left: 50px;
+}

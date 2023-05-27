@@ -1,17 +1,20 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>mememaker</title>
-</head>
-<body>
-    <h1>mememaker</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Generate Meme</button>
-    </form>
-</body>
-</html>
+    {% include 'header.html' %}
+    {% block css_files %}
+        <link rel="stylesheet" href="{% static 'mememaker/home.css' %}">
+        <link rel="stylesheet" href="{% static 'header.css' %}">
+    {% endblock %}
+    <a><img class="hit" src="{% static 'mememaker/imgs/hitmarker-spam.gif' %}" style="position: absolute; left: 1px ;top: 250px; width: 800px; opacity: 50%;"></a>
+    <a><img class="hit" src="{% static 'mememaker/imgs/hitmarker-spam.gif' %}" style="position: absolute; right: 1px ;top: 250px; width: 800px; opacity: 50%;"></a>
+    <a><img class="mlg" src="{% static 'mememaker/imgs/mlg1.png' %}" style="position: absolute; right: 20px; top: 100px; width: 100px;"></a>
+    <div class="title-container">
+        <h1 class="title">Welcome to Memerfy!</h1>
+        <img class="dog" src="{% static 'mememaker/imgs/dog.gif' %}" style="width: 600px ;">  
+        <p class="description">This site allows you to generate hilarious memes based on your input words.</p>
+        <a href="{% url 'register' %}" class="started-button">Get Started</a>
+    </div>
+    <img class="doge" src="{% static 'mememaker/imgs/doge.png' %}"> 
+    {% include 'footer.html' %}
 {% endblock %}

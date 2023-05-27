@@ -6,16 +6,6 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <a href="{% url 'home' %}" class="logo-button">
-        <img class="logo" src="{% static 'mememaker\imgs\logo.png' %}" alt="Site Logo">
-        </a>
-        <nav class="navigation">
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'register' %}">Register</a>
-        </nav>
-    </header>
     <!-- Content block -->
     <div class="content">
         {% block content %}

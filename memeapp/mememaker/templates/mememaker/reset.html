@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    {% include 'header.html' %}
+    {% block css_files %}
+        <link rel="stylesheet" href="{% static 'mememaker/home.css' %}">
+        <link rel="stylesheet" href="{% static 'header.css' %}">
+    {% endblock %}
+    <h1>Forgot Password</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.email.label_tag }}
+      {{ form.email }}
+      <button type="submit">Reset Password</button>
+    </form>
+    {% include 'footer.html' %}
+{% endblock %}

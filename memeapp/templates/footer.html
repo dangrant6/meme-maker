@@ -1,0 +1,19 @@
+{% load static %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'footer.css' %}">
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+{% endblock %}
+<footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        Made by: <a href="dangrant6"><img class="git-logo" src="{% static 'mememaker\imgs\git.png' %}" style="width: 50px"></a>
+        <div><br> </div>
+        
+        <br>Built with: <br> <br>
+        <a href="https://www.djangoproject.com/"><img class="django-logo" src="{% static 'mememaker\imgs\django.png' %}" style="width: 50px"></a>
+        <br><a href="https://www.postgresql.org"><img class="post-logo" src="{% static 'mememaker\imgs\postgres.png' %}" style="width: 50px"></a>
+        <br><a href="https://aws.amazon.com"><img class="aws-logo" src="{% static 'mememaker\imgs\aws.png' %}" style="width: 50px"></a>
+        <br><a href="https://openai.com"><img class="ai-logo" src="{% static 'mememaker\imgs\ai.png' %}" style="width: 100px"></a>
+      </p>
+    </div>
+</footer> 

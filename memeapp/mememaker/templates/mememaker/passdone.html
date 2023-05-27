@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    {% include 'header.html' %}
+    {% block css_files %}
+        <link rel="stylesheet" href="{% static 'mememaker/home.css' %}">
+        <link rel="stylesheet" href="{% static 'header.css' %}">
+    {% endblock %}
+    <h1>Password Reset Email Sent</h1>
+    <p>An email has been sent to your registered email address. Please check your inbox and follow the instructions to reset your password.</p>
+{% endblock %}
+{% include 'footer.html' %}
