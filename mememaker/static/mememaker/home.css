@@ -37,18 +37,6 @@
     background-color: powderblue;
 }
 
-.dog {
-    height: 100px;
-    width: 150px;
-}
-
-.hit {
-    position: relative;
-    left: 50px;
-    width: 10px;
-    margin-left: 50px;
-}
-
 .mlg {
     display: flex;
     position: relative;

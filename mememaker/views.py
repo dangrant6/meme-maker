@@ -123,11 +123,11 @@ def community_page(request):
 
 def create_meme_table():
     conn = psycopg2.connect(
-        host=env("HOST"),
-        port=env("PORT"),
-        database=env("DATABASE"),
-        user=env("NAME"),
-        password=env("PASSWORD")
+        host=os.getenv("HOST"),
+        port=os.getenv("PORT"),
+        database=os.getenv("DATABASE"),
+        user=os.getenv("NAME"),
+        password=os.getenv("PASSWORD")
     )
     cursor = conn.cursor()
     cursor.execute('''
@@ -142,11 +142,11 @@ def create_meme_table():
     
 def save_meme(meme_url):
     conn = psycopg2.connect(
-        host=env("HOST"),
-        port=env("PORT"),
-        database=env("DATABASE"),
-        user=env("NAME"),
-        password=env("PASSWORD")
+        host=os.getenv("HOST"),
+        port=os.getenv("PORT"),
+        database=os.getenv("DATABASE"),
+        user=os.getenv("NAME"),
+        password=os.getenv("PASSWORD")
     )
     cursor = conn.cursor()
     cursor.execute("INSERT INTO memes (url) VALUES (%s)", (meme_url,))
@@ -160,11 +160,11 @@ def generate_unique_filename():
 
 def get_saved_memes():
     conn = psycopg2.connect(
-        host=env("HOST"),
-        port=env("PORT"),
-        database=env("DATABASE"),
-        user=env("NAME"),
-        password=env("PASSWORD")
+        host=os.getenv("HOST"),
+        port=os.getenv("PORT"),
+        database=os.getenv("DATABASE"),
+        user=os.getenv("NAME"),
+        password=os.getenv("PASSWORD")
     )
     cursor = conn.cursor()
     cursor.execute("SELECT url FROM memes")

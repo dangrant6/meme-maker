@@ -27,10 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
 env = environ.Env()
 environ.Env.read_env()
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv("DEBUG")
 
 ALLOWED_HOSTS = ['*']
 
@@ -82,7 +82,16 @@ WSGI_APPLICATION = 'memeapp.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default" : dj_database_url.parse(env("DATABASE_URL"))
+    "default":{
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("NAME"),
+        'USER': os.getenv("USER"),
+        'PASSWORD': os.getenv("PASSWORD"),
+        'HOST': os.getenv("HOST"),
+        'PORT': os.getenv("PORT"),
+    }
 }
 
 
@@ -120,7 +129,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
