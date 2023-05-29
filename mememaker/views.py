@@ -127,7 +127,7 @@ def create_meme_table():
         port=os.getenv("PORT"),
         database=os.getenv("DATABASE"),
         user=os.getenv("NAME"),
-        password=os.getenv("PASSWORD")
+        password=os.getenv("PASSWORD"),
     )
     cursor = conn.cursor()
     cursor.execute('''
