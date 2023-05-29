@@ -35,20 +35,6 @@ def login_page(request):
             return redirect('mkmeme')
         else:
             return HttpResponse("Invalid username or password.")
-        form = LoginForm(request.POST)
-        '''
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('home')  # Redirect to the Home View after successful login
-            else:
-                form.add_error(None, "Invalid username or password.")
-    else:
-        form = LoginForm()
-    '''
     #return render(request, 'mememaker/login.html', {'form': form})
     return render(request, 'mememaker/login.html')
 
@@ -58,24 +44,13 @@ def register_page(request):
         email = request.POST.get('email')
         pass1 = request.POST.get('password1')
         pass2 = request.POST.get('password2')
-        form = UserCreationForm(request.POST)
+        #form = UserCreationForm(request.POST)
         if pass1 != pass2:
             return ("Passwords do not match.")
         else:
             my_user = User.objects.create_user(uname, email, pass1)
             my_user.save()
             return redirect('mkmeme')
-        '''    
-        if form.is_valid():
-            user = form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('mkmeme.html')  # Replace 'mkmeme' with the URL name of your meme page
-    else:
-        form = UserCreationForm()
-        '''
     #return render(request, 'mememaker/register.html', {'form': form})
     return render(request, 'mememaker/register.html')
 
@@ -86,8 +61,8 @@ def logout_page(request):
 def generate_meme_text(word_input):
     openai.api_key = os.getenv("AIKEY")
     response = openai.Completion.create(
-        engine='davinci',
-        #engine='davinci:ft-personal-2023-05-26-06-05-49',
+        #engine='davinci',
+        engine='davinci:ft-personal-2023-05-26-06-05-49',
         #prompt=f"Make a meme caption based off the word {word_input}.",
         prompt=f"Make a funny meme caption using the word {word_input}",
         max_tokens=50,
@@ -121,36 +96,6 @@ def make_meme(request):
 def community_page(request):
     saved_memes = get_saved_memes()
     return render(request, 'mememaker/community.html', {'saved_memes': saved_memes})
-
-def copy_data_to_destination_database():
-    source_conn = psycopg2.connect(
-        host=os.getenv("HOST"),
-        port=os.getenv("PORT"),
-        database=os.getenv("NAME"),
-        user=os.getenv("USER"),
-        password=os.getenv("PASSWORD")
-    )
-    dest_conn = psycopg2.connect(**dj_database_url.parse(os.getenv("DATABASE_URL")))
-
-    source_cursor = source_conn.cursor()
-    dest_cursor = dest_conn.cursor()
-
-    # Fetch data from the source database
-    source_cursor.execute("SELECT url FROM memes")
-    rows = source_cursor.fetchall()
-
-    # Insert data into the destination database
-    for row in rows:
-        dest_cursor.execute("INSERT INTO memes (url) VALUES (%s)", (row[0],))
-
-    # Commit the changes
-    dest_conn.commit()
-
-    # Close the cursors and connections
-    source_cursor.close()
-    dest_cursor.close()
-    source_conn.close()
-    dest_conn.close()
 
 def create_meme_table():
     conn = psycopg2.connect(
@@ -213,12 +158,6 @@ def forgot_pass(request):
     if request.method == 'POST':
         form = PasswordResetForm(request.POST)
         if form.is_valid():
-            form.save(
-                request=request,
-                from_email='your_email@example.com',  # Replace with your email address
-                email_template_name='resetemail.html',  # Replace with your email template
-                subject_template_name='password_reset_subject.txt'  # Replace with your subject template
-            )
             return redirect('passdone')
     else:
         form = PasswordResetForm()
