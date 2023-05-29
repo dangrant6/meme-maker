@@ -9,6 +9,7 @@ from mememaker.forms import LoginForm
 from mememaker.forms import RegistrationForm
 from django.contrib.auth.forms import UserCreationForm
 from dotenv import load_dotenv
+import dj_database_url
 import psycopg2
 import requests
 import random
@@ -127,7 +128,7 @@ def create_meme_table():
         port=os.getenv("PORT"),
         database=os.getenv("DATABASE"),
         user=os.getenv("NAME"),
-        password=os.getenv("PASSWORD"),
+        password=os.getenv("PASSWORD")
     )
     cursor = conn.cursor()
     cursor.execute('''
@@ -153,10 +154,6 @@ def save_meme(meme_url):
     conn.commit()
     cursor.close()
     conn.close()
-
-def generate_unique_filename():
-    unique_filename = str(uuid.uuid4()) + '.jpg'
-    return unique_filename
 
 def get_saved_memes():
     conn = psycopg2.connect(
