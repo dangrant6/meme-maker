@@ -81,22 +81,15 @@ WSGI_APPLICATION = 'memeapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-local_db_config = {
-    "ENGINE": "django.db.backends.postgresql",
-    "NAME": os.getenv("NAME"),
-    "USER": os.getenv("USER"),
-    "PASSWORD": os.getenv("PASSWORD"),
-    "HOST": os.getenv("HOST"),
-    "PORT": os.getenv("PORT"),
-}
-
-# Heroku-style configuration
-heroku_db_config = dj_database_url.parse(os.getenv("DATABASE_URL"))
-
-# Combined configuration
 DATABASES = {
-    "default": local_db_config, 
-    "default": heroku_db_config,
+    "default":{
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("NAME"),
+        'USER': os.getenv("USER"),
+        'PASSWORD': os.getenv("PASSWORD"),
+        'HOST': os.getenv("HOST"),
+        'PORT': os.getenv("PORT"),
+    }
 }
 
 
