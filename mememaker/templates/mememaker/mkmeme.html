@@ -9,7 +9,7 @@
 {% endblock %}
 <div class="container">
     <h1 class="title">Make Meme</h1>
-    <a>Make sure you're logged in to save your memes!</a>
+    <a>Make sure you're logged in to create and save your memes!</a>
     <form method="POST" action="{% url 'mkmeme' %}" class="meme-form">
         {% csrf_token %}
         <div class="form-group">
