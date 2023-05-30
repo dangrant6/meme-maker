@@ -149,4 +149,4 @@ AWS_DEFAULT_ACL =  None
 AWS_S3_VERITY = True
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-CSRF_TRUSTED_ORIGINS=['*']
+CSRF_TRUSTED_ORIGINS=['https://memerfy.up.railway.app']
