@@ -4,3 +4,6 @@ tester.py
 tune.py
 data.py
 /newenv
+memedata_prepeared.jsonl
+memedata.json
+memegenerator.csv
