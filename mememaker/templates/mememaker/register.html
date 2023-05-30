@@ -15,19 +15,22 @@
                 <label for="id_username">Username:</label>
                 <input type="text" id="id_username" name="username" class="input-field">
             </div>
+            {% csrf_token %}
             <div class="form-group">
                 <label for="id_email">Email:</label>
                 <input type="text" id="id_email" name="email" class="input-field">
             </div>
+            {% csrf_token %}
             <div class="form-group">
                 <label for="id_password1">Password:</label>
                 <input type="password" id="id_password1" name="password1" class="input-field">
             </div>
+            {% csrf_token %}
             <div class="form-group">
                 <label for="id_password2">Confirm Password:</label>
                 <input type="password" id="id_password2" name="password2" class="input-field">
             </div>
-            
+            {% csrf_token %}
             <button type="submit" class="submit-button">Register</button>
         </form>
         <p class="text-small">Already have an account? <a href="{% url 'login' %}">Login</a></p>

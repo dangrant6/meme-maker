@@ -15,10 +15,12 @@
                 <label for="id_username">Username:</label>
                 <input type="text" id="id_username" name="username" class="input-field">
             </div>
+            {% csrf_token %}
             <div class="form-group">
                 <label for="id_password">Password:</label>
                 <input type="password" id="id_password" name="pass" class="input-field">
             </div>
+            {% csrf_token %}
             <button type="submit" class="submit-button">Login</button>
         </form>
         <p class="text-small">Don't have an account? <a href="{% url 'register' %}">Register</a></p>

@@ -16,6 +16,7 @@
             <label for="word_input">Enter Word</label>
             <input type="text" id="word_input" name="word_input" class="input-field" pattern="\w+" required>
         </div>
+        {% csrf_token %}
         <button type="submit" class="generate-button">Generate Meme</button>
     </form>
     <div class="meme-image">
