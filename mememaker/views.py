@@ -14,10 +14,6 @@ import psycopg2
 import requests
 import random
 import urllib.parse
-import os
-# import environ
-# env = environ.Env()
-# environ.Env.read_env()
 load_dotenv()
 
 # Create your views here.
@@ -70,22 +66,15 @@ def logout_page(request):
 #     return meme_text
 
 def generate_meme_text(word_input):
-    # Load pre-trained model and tokenizer from Hugging Face
     model_name = "gpt2"
     tokenizer = GPT2Tokenizer.from_pretrained(model_name)
     model = GPT2LMHeadModel.from_pretrained(model_name)
-    
-    # Generate prompt with more context for better generation
     prompt = f"Create a funny meme caption using the word '{word_input}'. Here is a funny meme caption:"
 
-    # Encode input and generate text
     inputs = tokenizer.encode(prompt, return_tensors='pt')
     outputs = model.generate(inputs, max_length=50, num_return_sequences=1, temperature=0.4, top_p=0.9, do_sample=True)
 
-    # Decode the generated text
     meme_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
-
-    # Post-process the meme text to remove the prompt part if necessary
     meme_text = meme_text.replace(prompt, "").strip()
 
     return meme_text
