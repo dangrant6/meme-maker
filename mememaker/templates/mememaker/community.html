@@ -17,7 +17,7 @@
     {% if saved_memes %}
     <div>
         {% for meme in saved_memes %}
-            <img src="{{ meme.0 }}" alt="Meme">
+            <img src="{{ meme.url }}" alt="Meme">
         {% endfor %}
     </div>
     {% else %}

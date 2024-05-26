@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
-import dj_database_url
-import environ
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,12 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 load_dotenv()
-env = environ.Env()
-environ.Env.read_env()
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG")
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -91,6 +87,13 @@ DATABASES = {
         'PORT': os.getenv("PORT"),
     }
 }
+print(f"NAME: {os.getenv('NAME')}")
+print(f"HOST: {os.getenv('HOST')}")
+print(f"PORT: {os.getenv('PORT')}")
+print(f"DATABASE: {os.getenv('DATABASE')}")
+print(f"USER: {os.getenv('USER')}")
+print(f"PASSWORD: {os.getenv('PASSWORD')}")
+print(f"DATABASE_URL: {os.getenv('DATABASE_URL')}")
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -130,6 +133,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -138,15 +142,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID ')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'dgrant_bucket'
-AWS_S3_SIGNATURE_NAME = 's3v4',
-AWS_S3_REGION_NAME = 'us-east-2'
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL =  None
-AWS_S3_VERITY = True
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 CSRF_TRUSTED_ORIGINS=['https://memerfy.up.railway.app']
